@@ -22,7 +22,7 @@ const Service = () => {
         }
       )
     } catch (error) {
-      console.log("Appwrite service :: createPost :: error", error);
+      console.log("Some Error occurred while creating your Profile:", error);
     }
   }
   return {

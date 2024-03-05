@@ -6,7 +6,6 @@ function Profile() {
   return (
     <div className='bg-black min-h-screen pt-40'>
       <ProfileInputBox/>
-      <SkillsInput/>
     </div>
   )
 }

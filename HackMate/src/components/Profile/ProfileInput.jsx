@@ -2,30 +2,27 @@ import React, { useState } from "react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { cn } from "../../utils/cn";
-import {
-  IconBrandGithub,
-  IconBrandGoogle,
-  IconBrandOnlyfans,
-} from "@tabler/icons-react";
 import { Button } from "../ui/moving-border";
 import service from "../../appwrite/config";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { SkillsInput } from "../ui/SkillsInput";
 
 export function ProfileInputBox() {
-  const [name , setName]= useState()
-  const [age , setAge]=useState()
-  const [college , setCollege]=useState()
+  const [name , setName]= useState('')
+  const [age , setAge]=useState('')
+  const [college , setCollege]=useState('')
   const [skills , setSkills]=useState([])
   const navigate= useNavigate()
 
   const handleSubmit = async()=>{
     if (name.trim()==='') return alert("write your name");
+    const skillsInString= JSON.stringify(skills)
     try {
        await service.createProfile({
         Name:name,
         College:college,
         Age:age,
-        Skills:skills,
+        Skills:skillsInString,
       })
       navigate('/')
     } catch (error) {
@@ -59,8 +56,8 @@ export function ProfileInputBox() {
           <Input id="college" placeholder="IIT Kanpur" type="text" value={college} onChange={(e)=> setCollege(e.target.value)} />
         </LabelInputContainer>
         <LabelInputContainer className="mb-4">
-          <Label htmlFor="skills">Skills</Label>
-          <Input id="skills" placeholder="HTML" type="text" value={skills} onChange={(e)=> setSkills(e.target.value)} />
+          <Label htmlFor="skills" >Skills</Label>
+          <SkillsInput userSkills={skills} setUserSkills={setSkills}/>
         </LabelInputContainer>
       </form>
       <Button
