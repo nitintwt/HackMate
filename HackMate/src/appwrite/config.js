@@ -8,7 +8,7 @@ const Service = () => {
     .setProject(conf.appwriteProjectId)
   const databases = new Databases(client)
 
-  const createProfile= async ({Name , College , Age , Skills }) => {
+  const createProfile= async ({Name , College , Age , Skills , About}) => {
     try {
       return await databases.createDocument(
         conf.appwriteDatabaseId,
@@ -19,6 +19,7 @@ const Service = () => {
           College,
           Age,
           Skills,
+          About,
         }
       )
     } catch (error) {

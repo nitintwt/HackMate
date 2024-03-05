@@ -6,12 +6,14 @@ import { Button } from "../ui/moving-border";
 import service from "../../appwrite/config";
 import { useNavigate } from "react-router-dom";
 import { SkillsInput } from "../ui/SkillsInput";
+import { ResizableInput } from "../ui/resizeAbleInput";
 
 export function ProfileInputBox() {
   const [name , setName]= useState('')
   const [age , setAge]=useState('')
   const [college , setCollege]=useState('')
   const [skills , setSkills]=useState([])
+  const [about, setAbout]= useState('')
   const navigate= useNavigate()
 
   const handleSubmit = async()=>{
@@ -23,6 +25,7 @@ export function ProfileInputBox() {
         College:college,
         Age:age,
         Skills:skillsInString,
+        About:about,
       })
       navigate('/')
     } catch (error) {
@@ -58,6 +61,10 @@ export function ProfileInputBox() {
         <LabelInputContainer className="mb-4">
           <Label htmlFor="skills" >Skills</Label>
           <SkillsInput userSkills={skills} setUserSkills={setSkills}/>
+        </LabelInputContainer>
+        <LabelInputContainer className="mb-4">
+          <Label htmlFor="about" >Tell us about your self</Label>
+          <ResizableInput value={about} onChange={(e)=> setAbout(e.target.value)}/>
         </LabelInputContainer>
       </form>
       <Button
