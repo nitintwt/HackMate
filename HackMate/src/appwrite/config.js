@@ -8,9 +8,9 @@ const Service = () => {
     .setProject(conf.appwriteProjectId)
   const databases = new Databases(client)
 
-  const createPost= async ({Name , College , Age , Skills }) => {
+  const createProfile= async ({Name , College , Age , Skills }) => {
     try {
-      return await databases.createProfile(
+      return await databases.createDocument(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
         ID.unique(),
@@ -26,7 +26,7 @@ const Service = () => {
     }
   }
   return {
-    createPost
+    createProfile
   }
 }
 const service = Service()

@@ -6,6 +6,7 @@ import {RouterProvider, createBrowserRouter} from 'react-router-dom'
 import Layout from './components/Layout.jsx'
 import Home from './components/Home/Home.jsx'
 import { Auth0Provider } from '@auth0/auth0-react'
+import Profile from './components/Profile/Profile.jsx'
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
       {
         path:'/',
         element:<Home/>
+      },
+      {
+        path:'/profile',
+        element:<Profile/>
       }
     ]
   }

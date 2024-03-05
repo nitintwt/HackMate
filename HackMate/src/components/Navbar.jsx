@@ -26,7 +26,7 @@ function Navbarr({ className }) {
         <Link>
          <MenuItem setActive={setActive} active={active} item="Team up"></MenuItem>
         </Link>
-        <Link>
+        <Link to='/profile'>
         <MenuItem setActive={setActive} active={active} item="Profile"></MenuItem>
         </Link>
       </Menu>
