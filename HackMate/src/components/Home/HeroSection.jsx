@@ -15,14 +15,23 @@ function HeroSection() {
         </p>
       </div>
       <div>
-      
-       <Button
-        borderRadius="1.75rem"
-        onClick={(e) => loginWithRedirect()}
-        className="bg-white dark:bg-slate-900 text-black dark:text-white border-neutral-200 dark:border-slate-800 font-bold"
-       >
-        Login
-       </Button>
+      {isAuthenticated ?
+             (<Button
+             borderRadius="1.75rem"
+             onClick={(e) => logout()}
+             className="bg-white dark:bg-slate-900 text-black dark:text-white border-neutral-200 dark:border-slate-800 font-bold"
+            >
+             Logout
+            </Button>)
+            :
+            (<Button
+            borderRadius="1.75rem"
+            onClick={(e) => loginWithRedirect()}
+            className="bg-white dark:bg-slate-900 text-black dark:text-white border-neutral-200 dark:border-slate-800 font-bold"
+           >
+            Login
+           </Button>) }
+
       
     </div>
     </div> 

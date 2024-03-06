@@ -5,6 +5,7 @@ import { cn } from "../../utils/cn";
 import { Button } from "../ui/moving-border";
 import service from "../../appwrite/config";
 import { useNavigate } from "react-router-dom";
+import {User, useAuth0} from '@auth0/auth0-react'
 import { SkillsInput } from "../ui/SkillsInput";
 import { ResizableInput } from "../ui/resizeAbleInput";
 
@@ -15,6 +16,7 @@ export function ProfileInputBox() {
   const [skills , setSkills]=useState([])
   const [about, setAbout]= useState('')
   const navigate= useNavigate()
+  const {user}= useAuth0()
 
   const handleSubmit = async()=>{
     if (name.trim()==='') return alert("write your name");
@@ -26,7 +28,9 @@ export function ProfileInputBox() {
         Age:age,
         Skills:skillsInString,
         About:about,
+        authId:user.sub,
       })
+
       navigate('/')
     } catch (error) {
       console.error("error submiting the form:", error)

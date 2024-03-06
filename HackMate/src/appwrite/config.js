@@ -8,7 +8,7 @@ const Service = () => {
     .setProject(conf.appwriteProjectId)
   const databases = new Databases(client)
 
-  const createProfile= async ({Name , College , Age , Skills , About}) => {
+  const createProfile= async ({Name , College , Age , Skills , About , authId}) => {
     try {
       return await databases.createDocument(
         conf.appwriteDatabaseId,
@@ -20,14 +20,28 @@ const Service = () => {
           Age,
           Skills,
           About,
+          authId,
         }
       )
     } catch (error) {
       console.log("Some Error occurred while creating your Profile:", error);
     }
   }
+  const getUserProfile= async ({authId}) => {
+    try {
+      const queries = [Query.equal("authId", `${authId}`)]
+      return await databases.listDocuments(
+        conf.appwriteDatabaseId,
+        conf.appwriteCollectionId,
+        queries
+      )
+    } catch (error) {
+      console.log("Some Error occurred while creating your Profile:", error);
+    }
+  }
   return {
-    createProfile
+    createProfile,
+    getUserProfile
   }
 }
 const service = Service()
