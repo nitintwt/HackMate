@@ -68,7 +68,7 @@ export function ProfileInputBox() {
         </LabelInputContainer>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="about" >Tell us about your self</Label>
-          <ResizableInput value={about} onChange={(e)=> setAbout(e.target.value)}/>
+          <ResizableInput value={about} onChange={(e)=> setAbout(e.target.value)} placeholder='Atleast 100 words'/>
         </LabelInputContainer>
       </form>
       <Button

@@ -21,9 +21,9 @@ function Profile() {
       try { 
         const data = await service.getUserProfile({authId:authId})
         setUserData(data)
-        console.log(data)
-        console.log(authId)
-        if (authId===data?.authId) return setOldUser(true) 
+        //console.log(data?.Name)
+        //console.log(authId)
+        if (authId===data.documents[0].authId) return setOldUser(true) 
       } catch (error) {
         console.error("error fetching user profile:", error)
       }
@@ -35,7 +35,7 @@ function Profile() {
   return (
     <div className='bg-black min-h-screen pt-40'>
       {oldUser? 
-      <UserProfile College={userData?.College} Name={userData?.Name} Skills={userData.Skills} About={userData.About} Age={userData.Age} /> 
+      <UserProfile College={userData.documents[0].College} Name={userData.documents[0].Name} Skills={userData.documents[0].Skills} About={userData.documents[0].About} Age={userData.documents[0].Age} /> 
       :
       <ProfileInputBox />
       }

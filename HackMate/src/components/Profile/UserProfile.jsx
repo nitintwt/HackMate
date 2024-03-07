@@ -1,25 +1,13 @@
 
 
 export default function UserProfile({Name , College , Age , Skills , About}) {
+  const skillsInObject = JSON.parse(Skills).join(' , ')
   return (
     <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
     
       <div className="w-full max-w-3xl dark:text-white">
         <div className="space-y-6 dark:text-white">
           <div className="flex items-center space-x-6 dark:text-white">
-            <div className="flex-shrink-0">
-              <img
-                alt="Avatar"
-                className="rounded-full"
-                height="96"
-                src="/placeholder.svg"
-                style={{
-                  aspectRatio: "96/96",
-                  objectFit: "cover",
-                }}
-                width="96"
-              />
-            </div>
             <div className="space-y-1 text-white">
               <h1 className="text-2xl font-bold text-white">{Name}</h1>
             </div>
@@ -41,7 +29,7 @@ export default function UserProfile({Name , College , Age , Skills , About}) {
             <div>
               <h2 className="text-sm font-semibold tracking-wide uppercase dark:text-white">Skills</h2>
               <p>
-                {Skills}
+                {skillsInObject}
               </p>
             </div>
           </div>
