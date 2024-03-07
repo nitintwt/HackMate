@@ -1,10 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button } from '../ui/moving-border'
 import { Link } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
+import UserContext from '../../context/UserContext'
+import { useContext } from 'react'
 
 function HeroSection() {
   const { loginWithRedirect, user, isAuthenticated, logout } = useAuth0();
+  const {setAuthId}= useContext(UserContext)
+
+  useEffect(()=>{
+    setAuthId(user?.sub)
+    console.log(user?.sub)
+  },[isAuthenticated])
   return (
     <div className="h-auto md:h-[40rem] w-full rounded-md flex flex-col items-center justify-center relative overflow-hidden mx-auto py-10  md:py-0">
       <div className="p-4 relative z-10 w-full text-center">
