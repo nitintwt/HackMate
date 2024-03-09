@@ -27,14 +27,16 @@ function Navbarr({ className }) {
         </Link>
         {isAuthenticated ?
           (<>
-          <Link>
-            <MenuItem setActive={setActive} active={active} item="Team up"></MenuItem>
+          <Link to='/teamup'>
+            <MenuItem setActive={setActive} active={active} item="Find Team "></MenuItem>
           </Link>
           <Link to='/profile'>
             <MenuItem setActive={setActive} active={active} item="Profile"></MenuItem>
           </Link>
+          <Link to='/maketeam'>
+            <MenuItem setActive={setActive} active={active} item="Make Team"></MenuItem>
+          </Link>
           </>) : ("")}
-
       </Menu>
     </div>
   );

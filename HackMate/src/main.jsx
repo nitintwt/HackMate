@@ -8,6 +8,8 @@ import Home from './components/Home/Home.jsx'
 import { Auth0Provider } from '@auth0/auth0-react'
 import Profile from './components/Profile/Profile.jsx'
 import UserContextProvider from './context/UserContextProvider.jsx'
+import Main from './components/TeamUp/main.jsx'
+import MakeTeam from './components/MakeTeam/MakeTeam.jsx'
 
 const router = createBrowserRouter([
   {
@@ -21,6 +23,14 @@ const router = createBrowserRouter([
       {
         path:'/profile',
         element:<Profile/>
+      },
+      {
+        path:'/teamup',
+        element:<Main/>
+      },
+      {
+        path:'/maketeam',
+        element:<MakeTeam/>
       }
     ]
   }

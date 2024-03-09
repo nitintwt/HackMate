@@ -7,6 +7,11 @@ export default function UserProfile({Name , College , Age , Skills , About}) {
     
       <div className="w-full max-w-3xl dark:text-white">
         <div className="space-y-6 dark:text-white">
+        <div className="flex items-center space-x-6 dark:text-white">
+            <div className="space-y-1 text-white">
+              <h1 className="mt-20 md:mt-0 text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">Your Profile</h1>
+            </div>
+          </div>
           <div className="flex items-center space-x-6 dark:text-white">
             <div className="space-y-1 text-white">
               <h1 className="text-2xl font-bold text-white">{Name}</h1>
