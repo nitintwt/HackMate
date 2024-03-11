@@ -1,22 +1,44 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { AllHackathon } from './AllHackathons'
 import { Input } from '../ui/input'
 import { Button, MovingBorder } from '../ui/moving-border'
+import HackathonCard from '../ui/HackathonCard'
+import service from '../../appwrite/config'
 
 function Main() {
+  const [data , setData] = useState([])
+
+  useEffect( ()=>{
+    const fetchHackathons= async ()=> {
+    try {
+      const allHackathons = await service.getAllHackathons([])
+      const reversedHackathons= allHackathons.documents.reverse()
+      setData(reversedHackathons)
+      console.log(reversedHackathons)
+    } catch (error) {
+      console.error("error fetching data :" , error)
+    }
+  }
+  fetchHackathons()
+  },[data])
+  
   return (
-    <div className='bg-black flex justify-center flex-col '>
-      <div className='pt-20  w-full mx-auto max-w-5xl'>
+    <div className='bg-black w-full h-dvh rounded-md flex flex-col items-center relative overflow-hidden mx-auto py-10  md:py-0  '>
+      <div className='p-10 mt-5 w-full mx-auto max-w-5xl'>
         <Input/>
       </div>
-      <div className='mt-8'>
+      <div className='mt-4'>
         <Button>Add Your Hackathon</Button>
       </div>
-      <div className='pt-'>
-      <AllHackathon/>
+      <div className='p-10'>
+       {data.map((hackathon)=>(
+        <HackathonCard Hackathon={hackathon.Name }/>
+       ))}
       </div>
     </div>
   )
 }
 
 export default Main
+
+ 

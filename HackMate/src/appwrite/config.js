@@ -27,6 +27,7 @@ const Service = () => {
       console.log("Some Error occurred while creating your Profile:", error);
     }
   }
+
   const getUserProfile= async ({authId}) => {
     try {
       const queries = [Query.equal("authId", `${authId}`)]
@@ -39,9 +40,44 @@ const Service = () => {
       console.log("Some Error occurred while creating your Profile:", error);
     }
   }
+
+  const createHackathon= async ({Name , location , mode , date , Skills , authId}) => {
+    try {
+      return await databases.createDocument(
+        conf.appwriteDatabaseId,
+        conf.appwriteCollectionId2,
+        ID.unique(),
+        {
+          Name,
+          location,
+          date,
+          Skills,
+          mode,
+          authId,
+        }
+      )
+    } catch (error) {
+      console.log("Some Error occurred while creating your Hackathon:", error);
+    }
+  }
+
+  const getAllHackathons= async () => {
+    try {
+      return await databases.listDocuments(
+        conf.appwriteDatabaseId,
+        conf.appwriteCollectionId2,
+      )
+    } catch (error) {
+      console.log("Some Error occurred while creating your Profile:", error);
+    }
+  }
+
+
   return {
     createProfile,
-    getUserProfile
+    getUserProfile,
+    createHackathon,
+    getAllHackathons
   }
 }
 const service = Service()
