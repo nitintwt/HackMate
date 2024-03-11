@@ -12,7 +12,7 @@ function Main() {
     const fetchHackathons= async ()=> {
     try {
       const allHackathons = await service.getAllHackathons([])
-      const reversedHackathons= allHackathons.documents.reverse()
+      const reversedHackathons= allHackathons?.documents.reverse()
       setData(reversedHackathons)
       console.log(reversedHackathons)
     } catch (error) {
@@ -20,7 +20,7 @@ function Main() {
     }
   }
   fetchHackathons()
-  },[data])
+  },[])
   
   return (
     <div className='bg-black w-full h-dvh rounded-md flex flex-col items-center relative overflow-hidden mx-auto py-10  md:py-0  '>
@@ -30,9 +30,9 @@ function Main() {
       <div className='mt-4'>
         <Button>Add Your Hackathon</Button>
       </div>
-      <div className='p-10'>
-       {data.map((hackathon)=>(
-        <HackathonCard Hackathon={hackathon.Name }/>
+      <div className='p-10 flex flex-row justify-between'>
+       {data?.map((hackathon)=>(
+        <HackathonCard Hackathon={hackathon.Name } skills={hackathon.Skills} location={hackathon.location} date={hackathon.date} mode={hackathon.mode}/>
        ))}
       </div>
     </div>

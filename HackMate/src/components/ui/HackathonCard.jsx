@@ -2,7 +2,7 @@ import React from 'react'
 
 function HackathonCard({Hackathon , date , location , mode , skills}) {
   return (
-    <div className="text-white bg-gray-900 rounded-xl">
+    <div className="text-white bg-gray-900 rounded-xl w-full max-w-md m-10">
     <div className="p-6">
       <div className="space-y-1">
         <div className="text-2xl">{Hackathon} </div>

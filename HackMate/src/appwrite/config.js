@@ -68,7 +68,7 @@ const Service = () => {
         conf.appwriteCollectionId2,
       )
     } catch (error) {
-      console.log("Some Error occurred while creating your Profile:", error);
+      console.log("Some Error occurred while fetching hackathons:", error);
     }
   }
 
