@@ -10,6 +10,7 @@ import Profile from './components/Profile/Profile.jsx'
 import UserContextProvider from './context/UserContextProvider.jsx'
 import Main from './components/TeamUp/main.jsx'
 import MakeTeam from './components/MakeTeam/MakeTeam.jsx'
+import Hackathon from './components/Hackathons/Hackathon.jsx'
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path:'/maketeam',
         element:<MakeTeam/>
+      },
+      {
+        path:'/profile/hackathon/:id',
+        element:<Hackathon/>
       }
     ]
   }

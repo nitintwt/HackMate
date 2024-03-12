@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { AllHackathon } from './AllHackathons'
+
 import { Input } from '../ui/input'
 import { Button, MovingBorder } from '../ui/moving-border'
 import HackathonCard from '../ui/HackathonCard'

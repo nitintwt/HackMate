@@ -71,13 +71,39 @@ const Service = () => {
       console.log("Some Error occurred while fetching hackathons:", error);
     }
   }
+  const getUserHackathons= async ({authId}) => {
+    try {
+      const queries =[Query.equal("authId",`${authId}`)]
+      return await databases.listDocuments(
+        conf.appwriteDatabaseId,
+        conf.appwriteCollectionId2,
+        queries
+      )
+    } catch (error) {
+      console.log("Some Error occurred while fetching hackathons:", error);
+    }
+  }
+  const getHackathon= async (authId) => {
+    try {
+      return await databases.getDocument(
+        conf.appwriteDatabaseId,
+        conf.appwriteCollectionId2,
+        authId
+      )
+    } catch (error) {
+      console.log("Some Error occurred while fetching hackathons:", error);
+    }
+  }
 
 
   return {
     createProfile,
     getUserProfile,
     createHackathon,
-    getAllHackathons
+    getAllHackathons,
+    getUserHackathons,
+    getHackathon,
+    
   }
 }
 const service = Service()
