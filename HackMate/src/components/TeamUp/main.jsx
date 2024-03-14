@@ -32,7 +32,7 @@ function Main() {
       </div>
       <div className='p-10 flex flex-row justify-between'>
        {data?.map((hackathon)=>(
-        <HackathonCard Hackathon={hackathon.Name } skills={hackathon.Skills} location={hackathon.location} date={hackathon.date} mode={hackathon.mode}/>
+        <HackathonCard Hackathon={hackathon.Name } skills={hackathon.Skills} location={hackathon.location} date={hackathon.date} mode={hackathon.mode} hackId={hackathon.$id}/>
        ))}
       </div>
     </div>

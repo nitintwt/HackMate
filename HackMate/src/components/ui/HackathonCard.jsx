@@ -1,6 +1,22 @@
-import React from 'react'
+import React, { useContext , useEffect } from 'react'
+import service from '../../appwrite/config'
+import UserContext from '../../context/UserContext'
 
-function HackathonCard({Hackathon , date , location , mode , skills}) {
+function HackathonCard({Hackathon , date , location , mode , skills , hackId}) {
+  const {authId}= useContext(UserContext)
+
+  const handleApply= async ()=>{
+    try {
+      await service.createApply({
+        HackId: hackId,
+        UserAppliedId: authId,
+      })
+      console.log('applied')
+      console.log(hackId)
+    } catch (error) {
+      console.error("error while applying:" , error)
+    }
+  }
   return (
     <div className="text-white bg-gray-900 rounded-xl w-full max-w-md m-10">
     <div className="p-6">
@@ -28,6 +44,9 @@ function HackathonCard({Hackathon , date , location , mode , skills}) {
         <p className="text-sm">
           {skills}
         </p>
+      </div>
+      <div>
+        <button onClick={handleApply}>Apply</button>
       </div>
     </div>
   </div>
