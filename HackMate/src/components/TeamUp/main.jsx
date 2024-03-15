@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
-
 import { Input } from '../ui/input'
-import { Button, MovingBorder } from '../ui/moving-border'
 import HackathonCard from '../ui/HackathonCard'
 import service from '../../appwrite/config'
 
@@ -23,28 +21,28 @@ function Main() {
   },[])
   
   return (
-    <div className='bg-black w-full h-dvh rounded-md flex flex-col items-center relative overflow-hidden mx-auto py-10  md:py-0  '>
-      <div className='p-11 mt-10 w-full mx-auto max-w-5xl'>
-        <Input/>
-      </div>
-      <div className='mt-4'>
-        <Button>Add Your Hackathon</Button>
-      </div>
-      <div className='p-10 flex flex-wrap justify-between'>
-       {data?.map((hackathon)=>(
-        <div key={hackathon.$id} className="w-full sm:w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/4 mb-4 px-2">
-          <HackathonCard
-            Hackathon={hackathon.Name}
-            skills={hackathon.Skills}
-            location={hackathon.location}
-            date={hackathon.date}
-            mode={hackathon.mode}
-            hackId={hackathon.$id}
-          />
+    <div className='bg-black h-dvh w-full flex justify-center items-center'>
+      <div className='w-full max-w-5xl'>
+        <div className='p-11 mt-10'>
+          <Input/>
         </div>
-       ))}
+        <div className='grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 justify-center pl-5 pr-5'>
+          {data?.map((hackathon) => (
+            <div key={hackathon.$id}>
+              <HackathonCard
+                Hackathon={hackathon.Name}
+                skills={hackathon.Skills}
+                location={hackathon.location}
+                date={hackathon.date}
+                mode={hackathon.mode}
+                hackId={hackathon.$id}
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
+
   )
 }
 

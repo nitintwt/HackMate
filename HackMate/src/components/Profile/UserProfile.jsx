@@ -22,39 +22,41 @@ export default function UserProfile({Name , College , Age , Skills , About}) {
     fetchUserHackathons()
   },[])
   return (
-    <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
-    
-      <div className="w-full max-w-3xl dark:text-white">
-        <div className="space-y-6 dark:text-white">
-        <div className="flex items-center space-x-6 dark:text-white">
-            <div className="space-y-1 text-white">
-              <h1 className="mt-20 md:mt-0 text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">Your Profile</h1>
-            </div>
-          </div>
+    <div>
+      <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
+      
+        <div className="w-full max-w-3xl dark:text-white">
+          <div className="space-y-6 dark:text-white">
           <div className="flex items-center space-x-6 dark:text-white">
-            <div className="space-y-1 text-white">
-              <h1 className="text-2xl font-bold text-white">{Name}</h1>
+              <div className="space-y-1 text-white">
+                <h1 className="mt-20 md:mt-0 text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">Your Profile</h1>
+              </div>
             </div>
-          </div>
-          <div className="space-y-2 dark:text-gray-400">
-            <p>
-              {About}
-            </p>
-          </div>
-          <div className="grid grid-cols-1 gap-2 dark:text-gray-400">
-            <div>
-              <h2 className="text-sm font-semibold tracking-wide uppercase dark:text-white">Age</h2>
-              <p>{Age}</p>
+            <div className="flex items-center space-x-6 dark:text-white">
+              <div className="space-y-1 text-white">
+                <h1 className="text-2xl font-bold text-white">{Name}</h1>
+              </div>
             </div>
-            <div>
-              <h2 className="text-sm font-semibold tracking-wide uppercase dark:text-white">College</h2>
-              <p>{College}</p>
-            </div>
-            <div>
-              <h2 className="text-sm font-semibold tracking-wide uppercase dark:text-white">Skills</h2>
+            <div className="space-y-2 dark:text-gray-400">
               <p>
-                {skillsInObject}
+                {About}
               </p>
+            </div>
+            <div className="grid grid-cols-1 gap-2 dark:text-gray-400">
+              <div>
+                <h2 className="text-sm font-semibold tracking-wide uppercase dark:text-white">Age</h2>
+                <p>{Age}</p>
+              </div>
+              <div>
+                <h2 className="text-sm font-semibold tracking-wide uppercase dark:text-white">College</h2>
+                <p>{College}</p>
+              </div>
+              <div>
+                <h2 className="text-sm font-semibold tracking-wide uppercase dark:text-white">Skills</h2>
+                <p>
+                  {skillsInObject}
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -62,7 +64,7 @@ export default function UserProfile({Name , College , Age , Skills , About}) {
 
       <div>
         <h1>All your Hackathons</h1>
-        <div className='p-10 flex flex-row justify-between'>
+        <div  className='grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 justify-center pl-5 pr-5'>
        {userHackathon.documents?.map((hackathon)=>(
         <UserHackathonCard Hackathon={hackathon.Name } skills={hackathon.Skills} location={hackathon.location} date={hackathon.date} mode={hackathon.mode} $id={hackathon.$id}/>
        ))}
