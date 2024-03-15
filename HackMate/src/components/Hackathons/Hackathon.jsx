@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import service from '../../appwrite/config'
 import HackathonCard from '../ui/HackathonCard'
+import AppliedUserCard from '../ui/AppliedUserCard'
 
 function Hackathon() {
   const {id}= useParams()
@@ -15,8 +16,9 @@ function Hackathon() {
         setHackathon(data)
 
         if(data){
-          const userData = await service.getAppliedUserId({HackId:id})
+          const userData = await service.getAppliedUserId(id)
           setAppliedUser(userData)
+          //console.log("userData:", userData)
         }
       } catch (error) {
         console.error(error)
@@ -36,12 +38,11 @@ function Hackathon() {
       <h1>People who have applied:</h1>
       </div>
       <div>
-
-
+        {appliedUser.documents?.map((userData)=>(
+          <AppliedUserCard  userId={userData.UserAppliedId}/>
+        ))}
       </div>
      </div>
-
-
     </div>
   )
 }

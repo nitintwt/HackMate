@@ -111,13 +111,13 @@ const Service = () => {
     }
   }
 
-  const getAppliedUserId= async ({HackId}) => {
+  const getAppliedUserId= async (HackId) => {
     try {
       const queries =[Query.equal("HackId",`${HackId}`)]
       return await databases.listDocuments(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId3,
-        id
+        queries
       )
     } catch (error) {
       console.log("Some Error occurred while fetching hackathons:", error);

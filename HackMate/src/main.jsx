@@ -36,6 +36,10 @@ const router = createBrowserRouter([
       {
         path:'/profile/hackathon/:id',
         element:<Hackathon/>
+      },
+      {
+        path:'/userprofile/:id',
+        element:<Profile/>
       }
     ]
   }
