@@ -1,5 +1,4 @@
 import React from 'react'
-import TeamInput from './TeamInput'
 import HackathonInput from '../ui/HackathonInputCard'
 
 function MakeTeam() {

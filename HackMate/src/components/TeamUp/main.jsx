@@ -21,7 +21,7 @@ function Main() {
   },[])
   
   return (
-    <div className='bg-black h-dvh w-full flex justify-center items-center'>
+    <div className='bg-black w-full flex justify-center items-center '>
       <div className='w-full max-w-5xl'>
         <div className='p-11 mt-10'>
           <Input/>

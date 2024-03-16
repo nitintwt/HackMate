@@ -21,20 +21,9 @@ export default function AppliedUserCard({ userId}) {
   return (
     <div className="p-4 grid gap-2">
     <div className="flex items-center gap-4">
-      <img
-        alt="Profile picture"
-        className="rounded-full"
-        height="48"
-        src="/placeholder.svg"
-        style={{
-          aspectRatio: "48/48",
-          objectFit: "cover",
-        }}
-        width="48"
-      />
       <div className="grid gap-1.5">
         <h3 className="text-lg font-bold">{user?.documents[0]?.Name}</h3>
-        <p className="text-sm leading-none text-gray-500">{user?.documents[0]?.Skills}</p>
+        <p className="text-sm leading-none text-white">{user?.documents[0]?.JSON?.parse(Skills)}</p>
       </div>
     </div>
     <div className="flex items-center justify-between">
