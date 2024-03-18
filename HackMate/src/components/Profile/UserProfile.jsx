@@ -29,7 +29,7 @@ export default function UserProfile({Name , College , Age , Skills , About}) {
           <div className="space-y-6 dark:text-white">
           <div className="flex items-center space-x-6 dark:text-white">
               <div className="space-y-1 text-white">
-                <h1 className="mt-20 md:mt-0 text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">Your Profile</h1>
+                <h1 className="mt-2 md:mt-0 text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">Your Profile</h1>
               </div>
             </div>
             <div className="flex items-center space-x-6 dark:text-white">
@@ -63,7 +63,7 @@ export default function UserProfile({Name , College , Age , Skills , About}) {
       </div>
 
       <div>
-        <h1>All your Hackathons</h1>
+      <h1 className="mt-2 md:mt-0 p-5  text-5xl  font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">Your Hackathons :</h1>
         <div  className='grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 justify-center pl-5 pr-5'>
        {userHackathon.documents?.map((hackathon)=>(
         <UserHackathonCard Hackathon={hackathon.Name } skills={hackathon.Skills} location={hackathon.location} date={hackathon.date} mode={hackathon.mode} $id={hackathon.$id}/>

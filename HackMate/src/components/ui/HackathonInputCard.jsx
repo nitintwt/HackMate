@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import service from '../../appwrite/config';
 import { useContext } from 'react'
 import UserContext from '../../context/UserContext'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
+import { Toaster, toast } from 'sonner'
 
 
 export default function HackathonInput() {
@@ -25,12 +26,15 @@ export default function HackathonInput() {
         Skills:skills,
         authId: authId,
       })
-      setShowSuccessMessage(true)
-      navigate('/teamup')
+      toast.success('Submit Successful')
+      setDate('')
+      setHackathon('')
+      setLocation('')
+      setSkills('')
+      setMode("")
     } catch (error) {
       console.error("Error creating the post:", error)
-      
-    }
+    } 
   }
   return (
     <main className="px-4 py-8 sm:px-6 lg:px-8 text-white bg-gray-900 rounded-lg">
@@ -89,6 +93,7 @@ export default function HackathonInput() {
             </button>
           </div>
       </div>
+      <Toaster position='bottom-center'/>
     </main>
   )
 }

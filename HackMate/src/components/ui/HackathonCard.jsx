@@ -1,10 +1,30 @@
 import React, { useContext , useState, useEffect } from 'react'
 import service from '../../appwrite/config'
 import UserContext from '../../context/UserContext'
+import {useAuth0} from '@auth0/auth0-react'
 
 function HackathonCard({Hackathon , date , location , mode , skills , hackId}) {
   const {authId}= useContext(UserContext)
-  const [applied, setApplied] = useState(false);
+  const [applied, setApplied] = useState(false)
+  const {user}= useAuth0()
+
+  useEffect(() => {
+    const checkAppliedStatus = async () => {
+      if (authId) {
+        try {
+          const data = await service.getAppliedUserId(hackId);
+          if (data?.documents[0]?.UserAppliedId === user?.sub) {
+            setApplied(true);
+          }
+          
+        } catch (error) {
+          setError('Error checking application status');
+        }
+      }
+    }
+    console.log('applied already')
+    checkAppliedStatus()
+  })
 
   const handleApply= async ()=>{
     try {
@@ -17,6 +37,7 @@ function HackathonCard({Hackathon , date , location , mode , skills , hackId}) {
       console.error("error while applying:" , error)
     }
   }
+
   return (
     <main className="px-4 py-8 sm:px-6 lg:px-8 text-white bg-gray-900 rounded-lg">
       <div className="rounded-lg shadow-lg overflow-hidden">
