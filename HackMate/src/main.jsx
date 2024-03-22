@@ -11,7 +11,7 @@ import UserContextProvider from './context/UserContextProvider.jsx'
 import Main from './components/TeamUp/main.jsx'
 import MakeTeam from './components/MakeTeam/MakeTeam.jsx'
 import Hackathon from './components/Hackathons/Hackathon.jsx'
-import Chat from './components/Chat/Chat.jsx'
+import Chat from './components/Chat/Room.jsx'
 
 const router = createBrowserRouter([
   {

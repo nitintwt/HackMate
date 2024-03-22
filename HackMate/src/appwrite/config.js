@@ -8,6 +8,11 @@ const Service = () => {
     .setProject(conf.appwriteProjectId)
   const databases = new Databases(client)
 
+ const messageSubsribe= client.subscribe(['databases.conf.appwriteDatabaseId.collections.conf.appwriteCollectionId4.documents', 'files'], response => {
+    // Callback will be executed on changes for documents A and all files.
+    console.log(response);
+});
+
   const createProfile= async ({Name , College , Age , Skills , About , authId}) => {
     try {
       return await databases.createDocument(
@@ -124,6 +129,47 @@ const Service = () => {
     }
   }
 
+  const getMessages= async () => {
+    try {
+      return await databases.listDocuments(
+        conf.appwriteDatabaseId,
+        conf.appwriteCollectionId4,
+      )
+    } catch (error) {
+      console.log("Some Error occurred while creating your Profile:", error);
+    }
+  }
+
+  const createMessage= async ({body , userId , username}) => {
+    try {
+      return await databases.createDocument(
+        conf.appwriteDatabaseId,
+        conf.appwriteCollectionId4,
+        ID.unique(),
+        {
+          body ,
+
+        }
+      )
+    } catch (error) {
+      console.log("Some Error occurred while creating your Profile:", error);
+    }
+  }
+
+  const  deleteMessage= async({messageId})=> {
+    try {
+        await databases.deleteDocument(
+            conf.appwriteDatabaseId,
+            conf.appwriteCollectionId4,
+            messageId
+        )
+        return true
+    } catch (error) {
+        console.log("Appwrite serive :: deletePost :: error", error);
+        return false
+    }
+  }
+
 
 
   return {
@@ -134,7 +180,11 @@ const Service = () => {
     getUserHackathons,
     getHackathon,
     createApply,
-    getAppliedUserId
+    getAppliedUserId,
+    getMessages,
+    createMessage,
+    deleteMessage,
+    messageSubsribe
   }
 }
 const service = Service()
