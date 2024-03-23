@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import service from '../../appwrite/config'
+import React, { useEffect, useState , useContext } from 'react'
+import service  from '../../appwrite/config'
 import {Trash2} from 'react-feather'
+import conf from '../../conf/conf'
+import { useAuth0 } from '@auth0/auth0-react'
+import UserContext from '../../context/UserContext'
 
 function Room() {
   const [messages , setMessages]= useState([])
   const [messageBody , setMessageBody]= useState("")
+  const {authId}= useContext(UserContext)
+  const {user}= useAuth0()
 
   useEffect(()=>{
     const fetchMessages = async ()=>{
@@ -12,14 +17,35 @@ function Room() {
       setMessages(data.documents)
     }
     fetchMessages()
-    service.messageSubsribe
-  })
+
+    const unsubscribe = service.client.subscribe(`databases.${conf.appwriteDatabaseId}.collections.${conf.appwriteCollectionId4}.documents`, response => {
+
+      if(response.events.includes("databases.*.collections.*.documents.*.create")){
+          console.log('A MESSAGE WAS CREATED')
+          setMessages(prevState => [response.payload, ...prevState])
+      }
+
+      if(response.events.includes("databases.*.collections.*.documents.*.delete")){
+          console.log('A MESSAGE WAS DELETED!!!')
+          setMessages(prevState => prevState.filter(message => message.$id !== response.payload.$id))
+      }
+    })
+
+    console.log('unsubscribe:', unsubscribe)
+
+    return () => {
+      unsubscribe();
+    }
+        
+  },[])
 
   const handleSubmit = async (e)=>{
     e.preventDefault()
     try {
       await service.createMessage({
         body: messageBody,
+        userId: user?.sub,
+        username:user?.name 
       })
       setMessages((prev)=> [prev , ...messages])
       setMessageBody('')
@@ -55,8 +81,18 @@ function Room() {
           {messages.map((message)=>(
             <div key={message?.$id} className='message--wrapper'>
               <div className='message--header'>
-                <p className='message-timestamp'></p>
-                <Trash2 onClick={()=> handleDelete(message?.$id)} />
+               <p> 
+                {message?.username ? (
+                    <span> {message?.username}</span>
+                ): (
+                    'Anonymous user'
+                )}
+                <small className="message-timestamp"> {new Date(message.$createdAt).toLocaleString()}</small>
+               </p>
+               
+                            <Trash2 className="delete--btn" onClick={()=> handleDelete(message?.$id)}/>
+                            
+                        
               </div>
               <div className='message--body'>
                <span>{message.body}</span>

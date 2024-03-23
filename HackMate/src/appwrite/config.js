@@ -1,5 +1,5 @@
 import conf from '../conf/conf.js';
-import { Client, ID, Databases, Query } from "appwrite";
+import { Client, ID, Databases, Query , Permission , Role } from "appwrite";
 
 const Service = () => {
   const client = new Client()
@@ -8,10 +8,10 @@ const Service = () => {
     .setProject(conf.appwriteProjectId)
   const databases = new Databases(client)
 
- const messageSubsribe= client.subscribe(['databases.conf.appwriteDatabaseId.collections.conf.appwriteCollectionId4.documents', 'files'], response => {
-    // Callback will be executed on changes for documents A and all files.
-    console.log(response);
-});
+
+
+
+
 
   const createProfile= async ({Name , College , Age , Skills , About , authId}) => {
     try {
@@ -141,14 +141,17 @@ const Service = () => {
   }
 
   const createMessage= async ({body , userId , username}) => {
+    const permissions = [Permission.write(Role.user(user.$id)),]
     try {
       return await databases.createDocument(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId4,
         ID.unique(),
+        permissions,
         {
           body ,
-
+          userId,
+          username,
         }
       )
     } catch (error) {
@@ -184,7 +187,7 @@ const Service = () => {
     getMessages,
     createMessage,
     deleteMessage,
-    messageSubsribe
+    client,
   }
 }
 const service = Service()
