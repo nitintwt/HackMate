@@ -88,6 +88,7 @@ const Service = () => {
       console.log("Some Error occurred while fetching hackathons:", error);
     }
   }
+
   const getHackathon= async (id) => {
     try {
       return await databases.getDocument(
@@ -140,18 +141,19 @@ const Service = () => {
     }
   }
 
-  const createMessage= async ({body , userId , username}) => {
-    const permissions = [Permission.write(Role.user(user.$id)),]
+  const createMessage= async ({body , userId , username , chatWith}) => {
+    //const permissions = [Permission.write(Role.user(user.$id)),]
     try {
       return await databases.createDocument(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId4,
         ID.unique(),
-        permissions,
+        //permissions,
         {
           body ,
           userId,
           username,
+          chatWith,
         }
       )
     } catch (error) {
@@ -173,6 +175,19 @@ const Service = () => {
     }
   }
 
+  const getFriends= async ({authId}) => {
+    try {
+     //const queries =[Query.equal("userId",`${authId}`)]
+      return await databases.listDocuments(
+        conf.appwriteDatabaseId,
+        conf.appwriteCollectionId4,
+        //queries
+      )
+    } catch (error) {
+      console.log("Some Error occurred while fetching hackathons:", error);
+    }
+  }
+
 
 
   return {
@@ -188,6 +203,7 @@ const Service = () => {
     createMessage,
     deleteMessage,
     client,
+    getFriends,
   }
 }
 const service = Service()
