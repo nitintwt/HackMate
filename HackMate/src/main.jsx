@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
 import './index.css'
 import {RouterProvider, createBrowserRouter} from 'react-router-dom'
 import Layout from './components/Layout.jsx'
@@ -12,6 +11,7 @@ import Main from './components/TeamUp/main.jsx'
 import MakeTeam from './components/MakeTeam/MakeTeam.jsx'
 import Hackathon from './components/Hackathons/Hackathon.jsx'
 import Chat from './components/Chat/Room.jsx'
+import ChatRoom from './components/Chat/Room.jsx'
 
 const router = createBrowserRouter([
   {
@@ -42,10 +42,14 @@ const router = createBrowserRouter([
         path:'/userprofile/:id',
         element:<Profile/>
       },
-      {
+      /*{
         path:'/chat/:id',
-        element:<Chat/>
-      }
+        element:<ChatRoom/>
+      },
+      {
+        path:'/chat',
+        element:<ChatRoom/>
+      }*/
     ]
   }
 ])

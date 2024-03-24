@@ -1,12 +1,29 @@
-import React from 'react'
+
 import HeroSection from './HeroSection'
 
-function Home() {
+
+import { motion } from "framer-motion";
+import React from "react";
+import { AuroraBackground } from "../ui/aurora-background";
+
+ function Home() {
   return (
-    <main className="min-h-screen bg-black/[0.96] antialiased bg-grid-white/[0.02]">
-      <HeroSection/>
-    </main>
-  )
+    <AuroraBackground>
+      <motion.div
+        initial={{ opacity: 0.0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          delay: 0.3,
+          duration: 0.8,
+          ease: "easeInOut",
+        }}
+        className="relative flex flex-col gap-4 items-center justify-center px-4"
+      >
+        <HeroSection/>
+      </motion.div>
+    </AuroraBackground>
+  );
 }
 
 export default Home
+

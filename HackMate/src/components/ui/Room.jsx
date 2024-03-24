@@ -12,6 +12,7 @@ function Room() {
   const {authId}= useContext(UserContext)
   const {user}= useAuth0()
   const {id}= useParams()
+  const [friendData , setFriendData] = useState([])
 
   useEffect(()=>{
     const fetchMessages = async ()=>{
@@ -33,6 +34,12 @@ function Room() {
       }
     })
 
+    const friedData = service.getUserProfile({
+      authId:id
+    })
+    setFriendData(friedData.documents)
+    
+
     console.log('unsubscribe:', unsubscribe)
 
     return () => {
@@ -49,6 +56,7 @@ function Room() {
         userId: user?.sub,
         username:user?.name,
         chatWith:id,
+        chatWithName:friendData?.Name
       })
       setMessageBody('')
     } catch (error) {

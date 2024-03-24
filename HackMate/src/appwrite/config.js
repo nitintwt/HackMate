@@ -8,11 +8,6 @@ const Service = () => {
     .setProject(conf.appwriteProjectId)
   const databases = new Databases(client)
 
-
-
-
-
-
   const createProfile= async ({Name , College , Age , Skills , About , authId}) => {
     try {
       return await databases.createDocument(
@@ -141,7 +136,7 @@ const Service = () => {
     }
   }
 
-  const createMessage= async ({body , userId , username , chatWith}) => {
+  const createMessage= async ({body , userId , username , chatWith , chatWithName}) => {
     //const permissions = [Permission.write(Role.user(user.$id)),]
     try {
       return await databases.createDocument(
@@ -153,6 +148,7 @@ const Service = () => {
           body ,
           userId,
           username,
+          chatWithName,
           chatWith,
         }
       )
@@ -168,7 +164,6 @@ const Service = () => {
             conf.appwriteCollectionId4,
             messageId
         )
-        return true
     } catch (error) {
         console.log("Appwrite serive :: deletePost :: error", error);
         return false
@@ -177,11 +172,11 @@ const Service = () => {
 
   const getFriends= async ({authId}) => {
     try {
-     //const queries =[Query.equal("userId",`${authId}`)]
+     const queries =[Query.equal("userId",`${authId}`)]
       return await databases.listDocuments(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId4,
-        //queries
+        queries
       )
     } catch (error) {
       console.log("Some Error occurred while fetching hackathons:", error);

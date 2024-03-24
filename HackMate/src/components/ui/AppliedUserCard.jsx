@@ -30,7 +30,7 @@ export default function AppliedUserCard({ userId}) {
         <Link className="inline-block w-full sm:w-auto px-4 py-2 mb-5 sm:mb-0 text-center bg-blue-500 hover:bg-blue-600 rounded-lg text-white transition duration-300 ease-in-out" to={`userProfile/${user?.documents[0]?.$id}`}>
             View Profile
         </Link>
-        <Link to={`/chat/${userId}`} className="w-full sm:w-auto px-4 py-2 mb-5 bg-green-500 hover:bg-green-600 rounded-lg text-white transition duration-300 ease-in-out">Accept</Link>
+        <Link className="w-full sm:w-auto px-4 py-2 mb-5 bg-green-500 hover:bg-green-600 rounded-lg text-white transition duration-300 ease-in-out">Accept</Link>
         <button className="w-full sm:w-auto px-4 py-2 mb-5 bg-red-500 hover:bg-red-600 rounded-lg text-white transition duration-300 ease-in-out" variant="outline">
           Reject
         </button>
