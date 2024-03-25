@@ -7,7 +7,7 @@ import UserHackathonCard from '../ui/UserHackathonCard'
 export default function UserProfile({Name , College , Age , Skills , About}) {
   const {authId}= useContext(UserContext)
   const [userHackathon , setUserHackathon]= useState([])
-  const skillsInObject = JSON.parse(Skills).join(' , ')
+  const skillsInObject = JSON?.parse(Skills).join(' , ')
 
   useEffect(()=>{
     const fetchUserHackathons= async ()=>{

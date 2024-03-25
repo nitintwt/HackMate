@@ -2,17 +2,10 @@ import React, { useState } from 'react';
 import service from '../../appwrite/config';
 import { useContext } from 'react'
 import UserContext from '../../context/UserContext'
-import { useNavigate } from 'react-router-dom'
 import { Toaster, toast } from 'sonner'
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { cn } from '../../utils/cn';
-
-import {
-  IconBrandGithub,
-  IconBrandGoogle,
-  IconBrandOnlyfans,
-} from "@tabler/icons-react";
 
  function HackathonInput() {
   const [mode, setMode] = useState('')
@@ -21,12 +14,13 @@ import {
   const [date , setDate]= useState('')
   const [skills , setSkills]= useState('')
   const {authId}= useContext(UserContext)
-  const{navigate} = useNavigate()
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const handleSubmit = async (e)=>{
     e.preventDefault()
-    if (skills.trim()==='') return alert(" pehle pura from fill toh kar le bhai");
+    if (skills.trim()==='') return alert(" pehle pura form fill toh kar le bhai");
+    if (location.trim()==='') return alert(" pehle pura form fill toh kar le bhai");
+    if (date.trim()==='') return alert(" pehle pura form fill toh kar le bhai");
+    if (hackathon.trim()==='') return alert(" pehle pura form fill toh kar le bhai");
     try {
       service.createHackathon({
         mode: mode,

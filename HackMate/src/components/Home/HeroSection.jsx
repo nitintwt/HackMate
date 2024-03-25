@@ -11,8 +11,9 @@ function HeroSection() {
 
   useEffect(()=>{
     setAuthId(user?.sub)
-    console.log(user?.sub)
   },[isAuthenticated])
+
+
   return (
     <div className="h-auto md:h-[40rem] w-full rounded-md flex flex-col items-center justify-center relative overflow-hidden mx-auto py-10  md:py-0">
       <div className="p-4 relative z-10 w-full text-center">
@@ -23,7 +24,7 @@ function HeroSection() {
         </p>
       </div>
       <div>
-      {isAuthenticated ?
+       {isAuthenticated ?
              (<Button
              borderRadius="1.75rem"
              onClick={(e) => logout()}
@@ -38,10 +39,8 @@ function HeroSection() {
             className="bg-white dark:bg-slate-900 text-black dark:text-white border-neutral-200 dark:border-slate-800 font-bold"
            >
             Login
-           </Button>) }
-
-      
-    </div>
+           </Button>) } 
+      </div>
     </div> 
   )
 }

@@ -1,7 +1,4 @@
-
 import HeroSection from './HeroSection'
-
-
 import { motion } from "framer-motion";
 import React from "react";
 import { AuroraBackground } from "../ui/aurora-background";

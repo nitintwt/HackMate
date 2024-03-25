@@ -13,7 +13,6 @@ function Main() {
       const allHackathons = await service.getAllHackathons([])
       const reversedHackathons= allHackathons?.documents.reverse()
       setData(reversedHackathons)
-      console.log(reversedHackathons)
     } catch (error) {
       console.error("error fetching data :" , error)
     }
@@ -46,6 +45,7 @@ function Main() {
                 date={hackathon.date}
                 mode={hackathon.mode}
                 hackId={hackathon.$id}
+                creatorAuthId= {hackathon.authId}
               />
             </div>
           ))}

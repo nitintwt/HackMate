@@ -3,28 +3,28 @@ import service from '../../appwrite/config'
 import UserContext from '../../context/UserContext'
 import {useAuth0} from '@auth0/auth0-react'
 
-function HackathonCard({Hackathon , date , location , mode , skills , hackId}) {
+function HackathonCard({Hackathon , date , location , mode , skills , hackId , creatorAuthId}) {
   const {authId}= useContext(UserContext)
   const [applied, setApplied] = useState(false)
+  const [creator , setCreator]= useState(false)
   const {user}= useAuth0()
 
   useEffect(() => {
     const checkAppliedStatus = async () => {
       if (authId) {
+        if(authId=== creatorAuthId) setCreator(true)
         try {
           const data = await service.getAppliedUserId(hackId);
           if (data?.documents[0]?.UserAppliedId === user?.sub) {
             setApplied(true);
-          }
-          
+          } 
         } catch (error) {
           setError('Error checking application status');
         }
       }
     }
-    console.log('applied already')
     checkAppliedStatus()
-  })
+  },[])
 
   const handleApply= async ()=>{
     try {
@@ -55,20 +55,29 @@ function HackathonCard({Hackathon , date , location , mode , skills , hackId}) {
           <p className="text-neutral-300">
             <span className="font-semibold">Skills:</span> {skills}
           </p>
-          {!applied ? (
+          {creator ?(
             <button
-              className="bg-neutral-300 hover:bg-neutral-500 text-white font-bold py-2 px-4 rounded mt-4"
-              onClick={handleApply}
-            >
-              Apply
-            </button>
-          ) : (
-            <button
-              className="bg-neutral-800 text-white font-bold py-2 px-4 rounded cursor-not-allowed mt-4"
-              disabled
-            >
-              Applied
-            </button>
+            className="bg-neutral-900  text-white font-bold py-2 px-4 rounded mt-4"
+            disabled
+          >
+            Your's
+          </button>
+          ):(
+            !applied ? (
+              <button
+                className="bg-neutral-300 hover:bg-neutral-600 text-white font-bold py-2 px-4 rounded mt-4"
+                onClick={handleApply}
+              >
+                Apply
+              </button>
+            ) : (
+              <button
+                className="bg-neutral-800 text-white font-bold py-2 px-4 rounded cursor-not-allowed mt-4"
+                disabled
+              >
+                Applied
+              </button>
+            )
           )}
         </div>
       </div>
