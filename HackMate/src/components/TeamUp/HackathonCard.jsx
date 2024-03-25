@@ -42,7 +42,7 @@ function HackathonCard({Hackathon , date , location , mode , skills , hackId , c
     <main className="px-4 py-8 sm:px-6 lg:px-8 text-white bg-gray-900 rounded-lg">
       <div className="rounded-lg shadow-lg overflow-hidden">
         <div className="p-6">
-          <h3 className="text-xl font-bold mb-2">{Hackathon}</h3>
+          <h3 className="text-xl font-bold mb-4">{Hackathon}</h3>
           <p className="text-neutral-300 mb-2">
             <span className="font-semibold">Date:</span> {date}
           </p>
@@ -52,29 +52,20 @@ function HackathonCard({Hackathon , date , location , mode , skills , hackId , c
           <p className="text-neutral-300 mb-2">
             <span className="font-semibold">Mode:</span> {mode}
           </p>
-          <p className="text-neutral-300">
+          <p className="text-neutral-300 mb-4">
             <span className="font-semibold">Skills:</span> {skills}
           </p>
-          {creator ?(
-            <button
-            className="bg-neutral-900  text-white font-bold py-2 px-4 rounded mt-4"
-            disabled
-          >
-            Your's
-          </button>
-          ):(
+          {creator ? (
+            <button className="bg-gray-800 text-white font-bold py-2 px-4 rounded mt-2" disabled>
+              Yours
+            </button>
+          ) : (
             !applied ? (
-              <button
-                className="bg-neutral-300 hover:bg-neutral-600 text-white font-bold py-2 px-4 rounded mt-4"
-                onClick={handleApply}
-              >
+              <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mt-2" onClick={handleApply}>
                 Apply
               </button>
             ) : (
-              <button
-                className="bg-neutral-800 text-white font-bold py-2 px-4 rounded cursor-not-allowed mt-4"
-                disabled
-              >
+              <button className="bg-gray-800 text-white font-bold py-2 px-4 rounded cursor-not-allowed mt-2" disabled>
                 Applied
               </button>
             )

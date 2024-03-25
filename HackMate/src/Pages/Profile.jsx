@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { ProfileInputBox } from './ProfileInput'
-import UserProfile from './UserProfile'
+import { ProfileInputBox } from '../components/Profile/ProfileInput'
+import UserProfile from '../components/Profile/UserProfile'
 import { useAuth0 } from '@auth0/auth0-react'
-import service from "../../appwrite/config"
+import service from "../appwrite/config"
 import { useContext } from 'react'
-import UserContext from '../../context/UserContext'
+import UserContext from '../context/UserContext'
 
 
 function Profile() {

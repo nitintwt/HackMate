@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Input } from '../ui/input'
-import HackathonCard from '../ui/HackathonCard'
-import service from '../../appwrite/config'
+import { Input } from '../components/ui/input'
+import HackathonCard from '../components/TeamUp/HackathonCard'
+import service from '../appwrite/config'
 
-function Main() {
+function TeamUp() {
   const [data , setData] = useState([])
   const [search , setSearch]= useState('')
 
@@ -56,6 +56,6 @@ function Main() {
   )
 }
 
-export default Main
+export default TeamUp
 
  

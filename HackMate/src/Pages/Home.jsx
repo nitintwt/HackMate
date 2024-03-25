@@ -1,7 +1,6 @@
-import HeroSection from './HeroSection'
+import HeroSection from "../components/Home/HeroSection";
 import { motion } from "framer-motion";
-import React from "react";
-import { AuroraBackground } from "../ui/aurora-background";
+import { AuroraBackground } from "../components/ui/aurora-background";
 
  function Home() {
   return (

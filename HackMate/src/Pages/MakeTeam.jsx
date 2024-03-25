@@ -1,5 +1,5 @@
 import React from 'react'
-import HackathonInput from '../ui/HackathonInputCard'
+import HackathonInput from '../components/MakeTeam/HackathonInputCard'
 
 function MakeTeam() {
   return (

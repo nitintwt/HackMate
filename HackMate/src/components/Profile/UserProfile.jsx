@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from 'react'
 import UserContext from '../../context/UserContext'
 import service from '../../appwrite/config'
-import HackathonCard from '../ui/HackathonCard'
-import UserHackathonCard from '../ui/UserHackathonCard'
+import HackathonCard from '../TeamUp/HackathonCard'
+import UserHackathonCard from './UserHackathonCard'
 
 export default function UserProfile({Name , College , Age , Skills , About}) {
   const {authId}= useContext(UserContext)

@@ -3,15 +3,15 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 import {RouterProvider, createBrowserRouter} from 'react-router-dom'
 import Layout from './components/Layout.jsx'
-import Home from './components/Home/Home.jsx'
+import Home from './Pages/Home.jsx'
 import { Auth0Provider } from '@auth0/auth0-react'
-import Profile from './components/Profile/Profile.jsx'
+import Profile from './Pages/Profile.jsx'
 import UserContextProvider from './context/UserContextProvider.jsx'
-import Main from './components/TeamUp/main.jsx'
-import MakeTeam from './components/MakeTeam/MakeTeam.jsx'
-import Hackathon from './components/Hackathons/Hackathon.jsx'
+import MakeTeam from './Pages/MakeTeam.jsx'
 import Chat from './components/Chat/Room.jsx'
 import ChatRoom from './components/Chat/Room.jsx'
+import TeamUp from './Pages/TeamUp.jsx'
+import UserHackathon from './Pages/UserHackathon.jsx'
 
 const router = createBrowserRouter([
   {
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
       },
       {
         path:'/teamup',
-        element:<Main/>
+        element:<TeamUp/>
       },
       {
         path:'/maketeam',
@@ -36,7 +36,7 @@ const router = createBrowserRouter([
       },
       {
         path:'/profile/hackathon/:id',
-        element:<Hackathon/>
+        element:<UserHackathon/>
       },
       {
         path:'/userprofile/:id',

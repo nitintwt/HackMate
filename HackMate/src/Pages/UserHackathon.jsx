@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import service from '../../appwrite/config'
-import HackathonCard from '../ui/HackathonCard'
-import AppliedUserCard from '../ui/AppliedUserCard'
+import service from '../appwrite/config'
+import HackathonCard from '../components/TeamUp/HackathonCard'
+import AppliedUserCard from '../components/Hackathons/AppliedUserCard'
 
-function Hackathon() {
+function UserHackathon() {
   const {id}= useParams()
   const [hackathon , setHackathon]= useState('')
   const [appliedUser , setAppliedUser]= useState([])
@@ -59,4 +59,4 @@ function Hackathon() {
   )
 }
 
-export default Hackathon
+export default UserHackathon

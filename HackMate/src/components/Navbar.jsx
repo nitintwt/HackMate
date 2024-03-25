@@ -9,7 +9,6 @@ export function Navbar() {
   return (
     <div className="relative w-full flex items-center justify-center">
       <Navbarr className="top-2" />
-  
     </div>
   );
 }
