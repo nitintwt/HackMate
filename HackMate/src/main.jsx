@@ -1,17 +1,18 @@
-import React from 'react'
+import React, { Suspense, lazy } from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import {RouterProvider, createBrowserRouter} from 'react-router-dom'
-import Layout from './components/Layout.jsx'
+import Layout from './Layout.jsx'
 import Home from './Pages/Home.jsx'
 import { Auth0Provider } from '@auth0/auth0-react'
-import Profile from './Pages/Profile.jsx'
 import UserContextProvider from './context/UserContextProvider.jsx'
-import MakeTeam from './Pages/MakeTeam.jsx'
 import Chat from './components/Chat/Room.jsx'
 import ChatRoom from './components/Chat/Room.jsx'
-import TeamUp from './Pages/TeamUp.jsx'
-import UserHackathon from './Pages/UserHackathon.jsx'
+
+const Profile = lazy(()=> import('./Pages/Profile.jsx'))
+const TeamUp = lazy(()=> import('./Pages/TeamUp.jsx'))
+const MakeTeam = lazy(()=> import('./Pages/MakeTeam.jsx'))
+const UserHackathon= lazy(()=> import('./Pages/UserHackathon.jsx'))
 
 const router = createBrowserRouter([
   {
@@ -24,19 +25,31 @@ const router = createBrowserRouter([
       },
       {
         path:'/profile',
-        element:<Profile/>
+        element:
+        <Suspense fallback={<h1>Loading...</h1>}>
+          <Profile/>
+        </Suspense>
       },
       {
         path:'/teamup',
-        element:<TeamUp/>
+        element:
+        <Suspense fallback={<h1>Loading...</h1>}>
+         <TeamUp/>
+        </Suspense>
       },
       {
         path:'/maketeam',
-        element:<MakeTeam/>
+        element: 
+        <Suspense fallback={<h1>Loading...</h1>}>
+          <MakeTeam/>
+        </Suspense>
       },
       {
         path:'/profile/hackathon/:id',
-        element:<UserHackathon/>
+        element:
+        <Suspense fallback={<h1>Loading...</h1>}>
+          <UserHackathon/>
+        </Suspense>
       },
       {
         path:'/userprofile/:id',
@@ -53,6 +66,7 @@ const router = createBrowserRouter([
     ]
   }
 ])
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <UserContextProvider>
