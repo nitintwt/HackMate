@@ -51,7 +51,7 @@ import { cn } from '../../utils/cn';
         </div>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="Date">Date</Label>
-          <Input id="Date" placeholder="" type="date" value={date} onChange={(event) => setDate(event.target.value)}/>
+          <Input id="Date" placeholder="" type="date" value={date} onChange={(event) => setDate(event.target.value)} className="w-40 px-2"/>
         </LabelInputContainer>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="mode">Mode</Label>
@@ -98,7 +98,6 @@ import { cn } from '../../utils/cn';
       </form>
       <Toaster position='bottom-center'/>
     </div>
-
   );
 }
 

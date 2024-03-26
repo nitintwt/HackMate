@@ -26,28 +26,44 @@ const router = createBrowserRouter([
       {
         path:'/profile',
         element:
-        <Suspense fallback={<h1>Loading...</h1>}>
+        <Suspense fallback={
+          <div className='bg-black w-full h-screen'>
+            <h1 className='text-white'>Loading....</h1>
+          </div>
+        }>
           <Profile/>
         </Suspense>
       },
       {
         path:'/teamup',
         element:
-        <Suspense fallback={<h1>Loading...</h1>}>
+        <Suspense fallback={
+        <div className='bg-black w-full h-screen'>
+          <h1 className='text-white'>Loading....</h1>
+        </div>
+        }>
          <TeamUp/>
         </Suspense>
       },
       {
         path:'/maketeam',
         element: 
-        <Suspense fallback={<h1>Loading...</h1>}>
+        <Suspense fallback={
+        <div className='bg-black w-full h-screen'>
+          <h1 className='text-white'>Loading....</h1>
+        </div>
+        }>
           <MakeTeam/>
         </Suspense>
       },
       {
         path:'/profile/hackathon/:id',
         element:
-        <Suspense fallback={<h1>Loading...</h1>}>
+        <Suspense fallback={
+        <div className='bg-black w-full h-screen'>
+          <h1 className='text-white'>Loading....</h1>
+        </div>
+        }>
           <UserHackathon/>
         </Suspense>
       },

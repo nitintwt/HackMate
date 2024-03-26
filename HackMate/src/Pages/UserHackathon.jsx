@@ -52,7 +52,7 @@ function UserHackathon() {
     <h1 className="mt-2 md:mt-0 p-5  text-5xl  font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">Appplied Users:</h1>
     <div className='grid grid-cols-1 gap-6  text-white justify-center  pl-5 pr-5 mt-10'>
       {appliedUser.documents?.map((userData)=>(
-        <AppliedUserCard  userId={userData.UserAppliedId} />
+        <AppliedUserCard key={userData.$id} userId={userData.UserAppliedId} />
       ))}
     </div>
     </div>

@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { Input } from '../components/ui/input'
 import HackathonCard from '../components/TeamUp/HackathonCard'
 import service from '../appwrite/config'
+import CardSkeleton from '../components/ui/CardSkeleton'
 
 function TeamUp() {
   const [data , setData] = useState([])
   const [search , setSearch]= useState('')
+  const [loading , setLoading]= useState(true)
 
   useEffect( ()=>{
     const fetchHackathons= async ()=> {
@@ -13,7 +15,9 @@ function TeamUp() {
       const allHackathons = await service.getAllHackathons([])
       const reversedHackathons= allHackathons?.documents.reverse()
       setData(reversedHackathons)
-    } catch (error) {
+      setLoading(false)
+    }
+     catch (error) {
       console.error("error fetching data :" , error)
     }
   }
@@ -33,23 +37,27 @@ function TeamUp() {
             Join forces and unleash your coding potential!
           </p>
         </div>
-        <div className='grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 justify-center pl-5 pr-5'>
+        {loading ? (
+          <CardSkeleton/>
+        ):(
+          <div className='grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 justify-center pl-5 pr-5'>
           {data?.filter ((hackathon)=> {
             return search.toLocaleLowerCase() === '' ? hackathon : hackathon.Name.toLocaleLowerCase().includes(search)
           }).map((hackathon) => (
             <div key={hackathon.$id}>
               <HackathonCard
-                Hackathon={hackathon.Name}
-                skills={hackathon.Skills}
-                location={hackathon.location}
-                date={hackathon.date}
-                mode={hackathon.mode}
-                hackId={hackathon.$id}
-                creatorAuthId= {hackathon.authId}
+              Hackathon={hackathon.Name}
+              skills={hackathon.Skills}
+              location={hackathon.location}
+              date={hackathon.date}
+              mode={hackathon.mode}
+              hackId={hackathon.$id}
+              creatorAuthId= {hackathon.authId}
               />
             </div>
           ))}
         </div>
+        )}
       </div>
     </div>
   </div>

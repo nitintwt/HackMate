@@ -3,11 +3,12 @@ import service from '../../appwrite/config'
 import UserContext from '../../context/UserContext'
 import {useAuth0} from '@auth0/auth0-react'
 
-function HackathonCard({Hackathon , date , location , mode , skills , hackId , creatorAuthId}) {
+function HackathonCard({Hackathon , date , location , mode , skills , hackId , creatorAuthId , loading}) {
   const {authId}= useContext(UserContext)
   const [applied, setApplied] = useState(false)
   const [creator , setCreator]= useState(false)
   const {user}= useAuth0()
+  
 
   useEffect(() => {
     const checkAppliedStatus = async () => {
@@ -17,7 +18,7 @@ function HackathonCard({Hackathon , date , location , mode , skills , hackId , c
           const data = await service.getAppliedUserId(hackId);
           if (data?.documents[0]?.UserAppliedId === user?.sub) {
             setApplied(true);
-          } 
+          }
         } catch (error) {
           setError('Error checking application status');
         }
@@ -41,38 +42,39 @@ function HackathonCard({Hackathon , date , location , mode , skills , hackId , c
   return (
     <main className="px-4 py-8 sm:px-6 lg:px-8 text-white bg-gray-900 rounded-lg">
       <div className="rounded-lg shadow-lg overflow-hidden">
-        <div className="p-6">
-          <h3 className="text-xl font-bold mb-4">{Hackathon}</h3>
-          <p className="text-neutral-300 mb-2">
-            <span className="font-semibold">Date:</span> {date}
-          </p>
-          <p className="text-neutral-300 mb-2">
-            <span className="font-semibold">Location:</span> {location}
-          </p>
-          <p className="text-neutral-300 mb-2">
-            <span className="font-semibold">Mode:</span> {mode}
-          </p>
-          <p className="text-neutral-300 mb-4">
-            <span className="font-semibold">Skills:</span> {skills}
-          </p>
-          {creator ? (
-            <button className="bg-gray-800 text-white font-bold py-2 px-4 rounded mt-2" disabled>
-              Yours
-            </button>
-          ) : (
-            !applied ? (
-              <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mt-2" onClick={handleApply}>
-                Apply
+          <div className="p-6">
+            <h3 className="text-xl font-bold mb-4">{Hackathon}</h3>
+            <p className="text-neutral-300 mb-2">
+              <span className="font-semibold">Date:</span> {date}
+            </p>
+            <p className="text-neutral-300 mb-2">
+              <span className="font-semibold">Location:</span> {location}
+            </p>
+            <p className="text-neutral-300 mb-2">
+              <span className="font-semibold">Mode:</span> {mode}
+            </p>
+            <p className="text-neutral-300 mb-4">
+              <span className="font-semibold">Skills:</span> {skills}
+            </p>
+            {creator ? (
+              <button className="bg-gray-800 text-white font-bold py-2 px-4 rounded mt-2" disabled>
+                Yours
               </button>
             ) : (
-              <button className="bg-gray-800 text-white font-bold py-2 px-4 rounded cursor-not-allowed mt-2" disabled>
-                Applied
-              </button>
-            )
-          )}
-        </div>
+              !applied ? (
+                <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mt-2" onClick={handleApply}>
+                  Apply
+                </button>
+              ) : (
+                <button className="bg-gray-800 text-white font-bold py-2 px-4 rounded cursor-not-allowed mt-2" disabled>
+                  Applied
+                </button>
+              )
+            )}
+          </div>
       </div>
     </main>
+
   )
 }
 
