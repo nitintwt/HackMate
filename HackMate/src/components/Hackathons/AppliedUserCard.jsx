@@ -41,15 +41,14 @@ export default function AppliedUserCard({ userId}) {
       </div>
     </div>
     <UserProfileModal
-     isvisible={showModal} 
+     isVisible={showModal} 
      onClose={()=> setShowModal(false)}
      name={user?.Name}
      skills={user?.Skills}
      college={user?.College}
      about={user?.About}
      age={user?.Age} />
-    </Fragment>
-    
+    </Fragment>  
   )
 }
 
