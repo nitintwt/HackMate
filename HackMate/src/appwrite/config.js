@@ -8,7 +8,7 @@ const Service = () => {
     .setProject(conf.appwriteProjectId)
   const databases = new Databases(client)
 
-  const createProfile= async ({Name , College , Age , Skills , About , authId}) => {
+  const createProfile= async ({Name , College , Age , Skills , About , authId , email}) => {
     try {
       return await databases.createDocument(
         conf.appwriteDatabaseId,
@@ -21,6 +21,7 @@ const Service = () => {
           Skills,
           About,
           authId,
+          email,
         }
       )
     } catch (error) {
@@ -125,6 +126,21 @@ const Service = () => {
     }
   }
 
+  
+  const  deleteAppliedUser= async(UserAppliedId)=> {
+    try {
+        await databases.deleteDocument(
+            conf.appwriteDatabaseId,
+            conf.appwriteCollectionId3,
+            UserAppliedId
+        )
+    } catch (error) {
+        console.log("Appwrite serive :: deleteUser :: error", error);
+        return false
+    }
+  }
+
+
   const getMessages= async () => {
     try {
       return await databases.listDocuments(
@@ -199,6 +215,7 @@ const Service = () => {
     deleteMessage,
     client,
     getFriends,
+    deleteAppliedUser,
   }
 }
 const service = Service()

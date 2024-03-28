@@ -25,7 +25,7 @@ function UserHackathon() {
       }
     }
     fetchHackathon()
-  },[])
+  },[appliedUser])
 
 
   return (

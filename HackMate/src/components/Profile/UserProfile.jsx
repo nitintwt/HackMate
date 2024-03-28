@@ -5,7 +5,7 @@ import HackathonCard from '../TeamUp/HackathonCard'
 import UserHackathonCard from './UserHackathonCard'
 import CardSkeleton from '../ui/CardSkeleton'
 
-export default function UserProfile({Name , College , Age , Skills , About}) {
+export default function UserProfile({Name , College , Age , Skills , About , email}) {
   const {authId}= useContext(UserContext)
   const [userHackathon , setUserHackathon]= useState([])
   const skillsInObject = JSON?.parse(Skills).join(' , ')
@@ -53,6 +53,10 @@ export default function UserProfile({Name , College , Age , Skills , About}) {
               <div>
                 <h2 className="text-sm font-semibold tracking-wide uppercase dark:text-white">College</h2>
                 <p>{College}</p>
+              </div>
+              <div>
+                <h2 className="text-sm font-semibold tracking-wide uppercase dark:text-white">Contact</h2>
+                <p>{email}</p>
               </div>
               <div>
                 <h2 className="text-sm font-semibold tracking-wide uppercase dark:text-white">Skills</h2>

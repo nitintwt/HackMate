@@ -38,7 +38,7 @@ function Profile() {
         <h1 className='text-white flex justify-center'>Loading...</h1>
       ):(
       oldUser? 
-        <UserProfile College={userData.documents[0].College} Name={userData.documents[0].Name} Skills={userData.documents[0].Skills} About={userData.documents[0].About} Age={userData.documents[0].Age} /> 
+        <UserProfile College={userData.documents[0].College} email={userData.documents[0].email} Name={userData.documents[0].Name} Skills={userData.documents[0].Skills} About={userData.documents[0].About} Age={userData.documents[0].Age} /> 
         :
         <ProfileInputBox />
       )}    

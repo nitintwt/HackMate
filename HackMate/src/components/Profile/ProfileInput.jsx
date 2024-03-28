@@ -15,6 +15,7 @@ export function ProfileInputBox() {
   const [college , setCollege]=useState('')
   const [skills , setSkills]=useState([])
   const [about, setAbout]= useState('')
+  const [email , setEmail]= useState('')
   const navigate= useNavigate()
   const {user}= useAuth0()
 
@@ -29,6 +30,7 @@ export function ProfileInputBox() {
         Skills:skillsInString,
         About:about,
         authId:user.sub,
+        email: email,
       })
       navigate('/')
     } catch (error) {
@@ -57,6 +59,10 @@ export function ProfileInputBox() {
         <LabelInputContainer className="mb-4">
           <Label htmlFor="college">College</Label>
           <Input id="college" placeholder="IIT Kanpur" type="text" value={college} onChange={(e)=> setCollege(e.target.value)} />
+        </LabelInputContainer>
+        <LabelInputContainer className="mb-4">
+          <Label htmlFor="email">Contacy Details:</Label>
+          <Input id="email" placeholder="example@gmail.com" type="text" value={email} onChange={(e)=> setEmail(e.target.value)} />
         </LabelInputContainer>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="skills" >Skills</Label>
